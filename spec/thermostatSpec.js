@@ -3,12 +3,16 @@ describe('Thermostat', function() {
   var thermostat;
 
   beforeEach(function(){
-    thermostat = new Thermostat(20);
+    thermostat = new Thermostat();
   });
 
-  it("Starts with 20", function(){
+  it("starts with 20", function(){
     expect(thermostat.showTemp()).toEqual(20);
   });
+
+  it('shows max temp', function(){
+    expect(thermostat.maxTemp()).toEqual(thermostat.max)
+  })
 
   it('increments temp by 1', function(){
     thermostat.increaseTemp();
@@ -43,13 +47,12 @@ describe('Thermostat', function() {
     });
 
     it('power saving mode reduces max temperature', function() {
-      thermostat.powerSave();
-      thermostat.powerSave();
+      thermostat.powerSaveOn();
       expect(thermostat.max).toEqual(25)
     })
 
     it('switching power mode off increases max temperature', function(){
-      thermostat.powerSave();
+      thermostat.powerSaveOff();
       expect(thermostat.max).toEqual(32)
     })
 
@@ -60,20 +63,18 @@ describe('Thermostat', function() {
 
     it('colour displays green if current temp is below 18', function(){
       thermostat.currentTemp = 17
-      thermostat.setColour
-      expect(thermostat.colour).toEqual('green')
+      expect(thermostat.setColour()).toBe('green')
     })
 
     it('colour displays red if current temp is above 25', function(){
       thermostat.currentTemp = 26
-      thermostat.setColour()
-      expect(thermostat.colour).toEqual('red')
+      expect(thermostat.setColour()).toBe('red')
     })
 
     it('otherwise colour displays yellow', function(){
       thermostat.currentTemp = 20
-      thermostat.setColour()
-      expect(thermostat.colour).toEqual('yellow')
+      expect(thermostat.setColour()).toBe('yellow')
     })
+
 
   });

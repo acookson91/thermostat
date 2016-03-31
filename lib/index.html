@@ -1,38 +1,49 @@
 <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="../src/thermostat.js"></script>
+
 <script type='text/javascript'>
   jQuery(function($){
       var thermostat = new Thermostat;
     $('#increase-temp').on('click', function(){
       thermostat.increaseTemp();
+      thermostat.setColour();
       $('#temperature').text(thermostat.currentTemp);
     })
-    $('#decrease-temp').on('click', function(){
+    $('#decrease-temp').click(function(){
       thermostat.decreaseTemp();
       $('#temperature').text(thermostat.currentTemp);
     })
-    $('power-save-on').on('click', function(){
-      thermostat.powerSave();
-      $('#status').text('Powersaving mode is:' + thermostat.isPowerSaveOn.toString());
+    $('#power-save-on').click(function(){
+      thermostat.powerSaveOn();
+      $('#power-saving-status').text('on');
     })
+    $('#power-save-off').click(function(){
+      thermostat.powerSaveOff();
+      $('#power-saving-status').text('off');
+    })
+    $('#power-reset').click(function() {
+      thermostat.reset();
+      $('#temperature').text(thermostat.currentTemp);
+    })
+    $('#temperature').text(thermostat.currentTemp);
 
+    $('button').click(function(){
+      var colour = thermostat.setColour();
+      $('body').css('background-color', colour);
+    })
   })
 </script>
 
 <html>
-  <body>
+  <body style="background-color:green;">
 
   <h1> TEMPTURE </h1>
-
-    <button onclick id='show-temp'> Show Temp </button>
-    <button id='increase-temp'> Increase Temp </button>
-    <button id='decrease-temp'> Decrease Temp </button>
-     power saving mode is <span id="power-saving-status">on</span>
-    <button id='power-save-on'> Power Save On </button>
-    <button id='power-save-off'> Power Save Off </button>
-    <button id='power-reset'> Power Reset </button>
-    <button id='set-colour'> Set Colour </button>
-    <span id='temperature'></span>
-    <span id='status'></span>
+    <button id='increase-temp'> Increase Temp </button><br>
+    <button id='decrease-temp'> Decrease Temp </button><br>
+     power saving mode is <span id="power-saving-status">on</span><br>
+    <button id='power-save-on'> Power Save On </button><br>
+    <button id='power-save-off'> Power Save Off </button><br>
+    <button id='power-reset'> Power Reset </button><br>
+    <span id='temperature'></span><br>
     </body>
 </html>
