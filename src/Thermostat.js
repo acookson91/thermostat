@@ -65,6 +65,6 @@ function Thermostat(){
       return 'medium-usage';
     }
     return 'high-usage';
-  }
+  };
 
 }
