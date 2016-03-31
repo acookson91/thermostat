@@ -48,6 +48,9 @@ function Thermostat(){
 
   Thermostat.prototype.switchPowerSavingModeOn = function () {
     this.powerSavingMode = true;
+    if (this.getCurrentTemperature() > 25) {
+      this.temperature = 25
+    };
   };
 
   Thermostat.prototype.resetTemperature = function() {
