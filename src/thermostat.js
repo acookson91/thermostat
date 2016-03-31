@@ -13,7 +13,6 @@ function Thermostat() {
     return this.max
   }
 
-
   Thermostat.prototype.increaseTemp = function() {
     if (this.currentTemp >= this.max) {
       throw new Error('sweaty')
@@ -29,6 +28,9 @@ function Thermostat() {
   };
 
   Thermostat.prototype.powerSaveOn = function() {
+    if (this.currentTemp > 25) {
+      this.currentTemp = 25;
+    }
     this.max = 25;
   };
 

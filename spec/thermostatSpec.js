@@ -51,6 +51,12 @@ describe('Thermostat', function() {
       expect(thermostat.max).toEqual(25)
     })
 
+    it('Changes tempture to below 25 if above', function(){
+      thermostat.currentTemp = 29
+      thermostat.powerSaveOn();
+      expect(thermostat.currentTemp).toBe(25)
+    })
+
     it('switching power mode off increases max temperature', function(){
       thermostat.powerSaveOff();
       expect(thermostat.max).toEqual(32)

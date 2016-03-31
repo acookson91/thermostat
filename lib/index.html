@@ -15,6 +15,7 @@
     })
     $('#power-save-on').click(function(){
       thermostat.powerSaveOn();
+      $('#temperature').text(thermostat.currentTemp);
       $('#power-saving-status').text('on');
     })
     $('#power-save-off').click(function(){
@@ -26,7 +27,6 @@
       $('#temperature').text(thermostat.currentTemp);
     })
     $('#temperature').text(thermostat.currentTemp);
-
     $('button').click(function(){
       var colour = thermostat.setColour();
       $('body').css('background-color', colour);
